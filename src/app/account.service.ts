@@ -1,16 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
-import { Subject } from 'rxjs/Subject';
+
+interface AccountModel {
+    email: string;
+    pwd: number;
+}
 
 @Injectable()
 export class AccountService {
-    authDatas$ = new Subject();
+    private accountList;
+    private dataURI = 'assets/authData.json';
+    private currentUserInfo: AccountModel;
 
-    constructor(private http: Http) {
-        http.get('assets/authData.json')
-            .subscribe(res => {
-                this.authDatas$.next(res.json());
-            });
+    getAccoutList() {
+        return new Promise((resolve, reject) => {
+            this.http.get(this.dataURI)
+                .subscribe(res => {
+                    this.accountList = res.json();
+                    resolve(this.accountList);
+                });
+        });
     }
+
+    getCurrentUserInfo() {
+        return this.currentUserInfo;
+    }
+
+    setCurrentUserInfo(userInfo) {
+        this.currentUserInfo = userInfo;
+    }
+
+    constructor(private http: Http) { }
 }

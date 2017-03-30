@@ -2,13 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
 import { AppComponent } from './app.component';
-
 import { HomeComponent } from './home/home.component';
-import { Routing } from './app.routes';
-
-import { AccountService } from './account.service';
 import { UserComponent } from './user/user.component';
+
+import { Routing } from './app.routes';
+import { EmailValidatorService } from './email-validator.service';
+import { AccountService } from './account.service';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,7 @@ import { UserComponent } from './user/user.component';
         HttpModule,
         Routing
     ],
-    providers: [AccountService],
+    providers: [AccountService, EmailValidatorService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

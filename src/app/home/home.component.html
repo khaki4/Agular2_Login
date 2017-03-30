@@ -1,4 +1,10 @@
-<div (click)="redirect()">
-  1
+<div class="loginWrap" *ngIf="!accountService.getCurrentUserInfo()">
+    <form>
+        <input type="text" name="email" placeholder="abcd@email.com" #emailValue>
+        <input type="password" name="pwd" placeholder="12345" #pwdValue>
+        <input type="submit" value="Login" (click)="onCickedLogin(emailValue.value, pwdValue.value)">
+    </form>
 </div>
-<button type="submit" class="btn btn-default">Submit</button>
+<!--/loginWrap-->
+
+<div *ngIf="accountService.getCurrentUserInfo()">Hello, {{ accountName }} Have Fun!</div>
