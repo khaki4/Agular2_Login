@@ -5,11 +5,10 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
-import appRoutes from './app.routes';
+import { Routing } from './app.routes';
 
-import { ContactsService } from './contacts.service';
+import { AccountService } from './account.service';
 import { UserComponent } from './user/user.component';
-
 
 @NgModule({
     declarations: [
@@ -21,9 +20,9 @@ import { UserComponent } from './user/user.component';
         BrowserModule,
         FormsModule,
         HttpModule,
-        appRoutes
+        Routing
     ],
-    providers: [ContactsService],
+    providers: [AccountService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

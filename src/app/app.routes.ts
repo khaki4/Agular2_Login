@@ -7,4 +7,4 @@ const routes = [
     { path: 'user', component: UserComponent }
 ];
 
-export default RouterModule.forRoot(routes);
+export const Routing =  RouterModule.forRoot(routes);
