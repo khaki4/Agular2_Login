@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { AccountService } from '../account.service';
 import { Router } from '@angular/router';
+import { AccountService } from '../account.service';
 import { EmailValidatorService } from '../email-validator.service';
-
 
 interface AccountModel {
     email: string;
@@ -50,24 +49,28 @@ export class HomeComponent {
             }
         };
 
+        const getMatchedUserInfo = (res) => {
+            const dataList = <any>res;
+            const machedUserInfo = dataList.resultSet.filter((item: AccountModel) => {
+                console.log('item', item);
+                console.log('vlidatedAccount', vlidatedAccount);
+                return (
+                    item.email === vlidatedAccount.email
+                    && item.pwd === vlidatedAccount.pwd
+                );
+            });
+            console.log('machedUserInfo :', machedUserInfo);
+            return machedUserInfo[0];
+        };
+
         this.accountService.getAccoutList()
-            .then((res) => {
-                const dataList = <any>res;
-                const currentUserInfo = dataList.resultSet.filter((item: AccountModel) => {
-                    console.log('item', item);
-                    console.log('vlidatedAccount', vlidatedAccount);
-                    return (
-                        item.email === vlidatedAccount.email
-                        && item.pwd === vlidatedAccount.pwd
-                    );
-                });
-                console.log('currentUserInfo :', currentUserInfo);
-                return currentUserInfo[0];
-            })
+            .then(getMatchedUserInfo)
             .then(decideAction);
     }
 
-    constructor(private accountService: AccountService, private router: Router, private emailVal: EmailValidatorService) {
+    constructor(private accountService: AccountService,
+        private router: Router,
+        private emailVal: EmailValidatorService) {
         this.accountName = this.getUserInfo() && this.getUserInfo().email || 'Guest';
     }
 }

@@ -1,10 +1,19 @@
 <div class="loginWrap" *ngIf="!accountService.getCurrentUserInfo()">
-    <form>
-        <input type="text" name="email" placeholder="abcd@email.com" #emailValue>
-        <input type="password" name="pwd" placeholder="12345" #pwdValue>
-        <input type="submit" value="Login" (click)="onCickedLogin(emailValue.value, pwdValue.value)">
-    </form>
+  <form>
+    <div class="input-group">
+      <span class="input-group-addon" id="sizing-addon2">@</span>
+      <input type="text" class="form-control" placeholder="Email Account" #emailValue>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon" id="sizing-addon2">#</span>
+      <input type="password" class="form-control" placeholder="Password" #pwdValue>
+    </div>
+    <button type="submit" class="btn btn-primary" 
+        (click)="onCickedLogin(emailValue.value, pwdValue.value)">Login</button>
+  </form>
 </div>
 <!--/loginWrap-->
+
+
 
 <div *ngIf="accountService.getCurrentUserInfo()">Hello, {{ accountName }} Have Fun!</div>
