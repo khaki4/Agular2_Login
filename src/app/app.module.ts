@@ -5,13 +5,17 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
-import appRoutes from "./app.routes";
+import appRoutes from './app.routes';
+
+import { ContactsService } from './contacts.service';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        UserComponent
     ],
     imports: [
         BrowserModule,
@@ -19,7 +23,7 @@ import appRoutes from "./app.routes";
         HttpModule,
         appRoutes
     ],
-    providers: [],
+    providers: [ContactsService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
