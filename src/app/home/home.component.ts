@@ -52,8 +52,6 @@ export class HomeComponent {
         const getMatchedUserInfo = (res) => {
             const dataList = <any>res;
             const machedUserInfo = dataList.resultSet.filter((item: AccountModel) => {
-                console.log('item', item);
-                console.log('vlidatedAccount', vlidatedAccount);
                 return (
                     item.email === vlidatedAccount.email
                     && item.pwd === vlidatedAccount.pwd
@@ -63,8 +61,10 @@ export class HomeComponent {
             return machedUserInfo[0];
         };
 
+        const failGetAccoutList = error => console.warn(error.message);
+
         this.accountService.getAccoutList()
-            .then(getMatchedUserInfo)
+            .then(getMatchedUserInfo, failGetAccoutList)
             .then(decideAction);
     }
 

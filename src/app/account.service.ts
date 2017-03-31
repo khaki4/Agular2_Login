@@ -16,8 +16,12 @@ export class AccountService {
         return new Promise((resolve, reject) => {
             this.http.get(this.dataURI)
                 .subscribe(res => {
-                    this.accountList = res.json();
-                    resolve(this.accountList);
+                    if (res.ok) {
+                        this.accountList = res.json();
+                        resolve(this.accountList);
+                    } else {
+                        reject('res status not OK');
+                    }
                 });
         });
     }
