@@ -1,3 +1,10 @@
-<p>
-  {{accountName}}
-</p>
+<div class="container" id="CONTENTS">
+    <div class="card">
+        <p class="card-panel light-blue darken-1" 
+            *ngIf="accountService.getCurrentUserInfo()"> 
+                Welcome, {{accountName}} Have Fun! 
+        </p>
+    </div>
+    <!--/card-->
+</div>
+<!--/container-->
