@@ -9,7 +9,7 @@
       <input type="password" class="form-control" placeholder="Password" #pwdValue>
     </div>
     <button type="submit" class="btn btn-primary" 
-        (click)="onCickedLogin(emailValue.value, pwdValue.value)">Login</button>
+        (click)="onCickedLogin(emailValue.value, pwdValue.value);emailValue.value='';pwdValue.value=''">Login</button>
   </form>
 </div>
 <!--/loginWrap-->
